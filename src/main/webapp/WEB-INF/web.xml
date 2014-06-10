@@ -21,6 +21,8 @@
         <param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
     </context-param>
 
+    <!-- add logging slf4j /-->
+
     <listener>
         <listener-class>
             org.springframework.web.context.ContextLoaderListener

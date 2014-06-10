@@ -6,6 +6,9 @@ public class MaintenanceEvent {
 
     private Date date;
 	private String vehicleName;
+    private String vehicleDescription;
+    private String vehicleNotes;
+    private Integer vehicleMileage;
 
 	public void setDate(Date date){
         this.date = date;
@@ -23,17 +26,28 @@ public class MaintenanceEvent {
         return this.vehicleName;
     }
 
-//    public String description(ModelMap model){
-//        return "index.jsp";
-//    }
-//
-//    public String notes(ModelMap model){
-//        return "index.jsp";
-//    }
-//
-//    public String mileage(ModelMap model){
-//        return "index.jsp";
-//    }
+    public void setVehicleDescription(String vehicleDescription){
+        this.vehicleDescription = vehicleDescription;
+    }
 
+    public String getDescription(String description){
+        return this.vehicleDescription;
+    }
+
+    public void setVehicleNotes(String vehicleNotes){
+        this.vehicleNotes = vehicleNotes;
+    }
+
+    public String getNotes(String notes){
+        return this.vehicleNotes;
+    }
+
+    public void setVehicleMileage(Integer vehicleMileage){
+        this.vehicleMileage = vehicleMileage;
+    }
+
+    public Integer getMileage(Integer mileage){
+        return this.vehicleMileage;
+    }
 
 }
