@@ -34,19 +34,19 @@ public class MaintenanceEvent {
         return this.description;
     }
 
-    public void setnotes(String notes){
+    public void setNotes(String notes){
         this.notes = notes;
     }
 
-    public String getnotes(String notes){
+    public String getNotes(String notes){
         return this.notes;
     }
 
-    public void setmileage(Integer mileage){
+    public void setMileage(Integer mileage){
         this.mileage = mileage;
     }
 
-    public Integer getmileage(Integer mileage){
+    public Integer getMileage(Integer mileage){
         return this.mileage;
     }
 
