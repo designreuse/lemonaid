@@ -5,7 +5,7 @@
 
     <display-name>Spring MVC Application</display-name>
 
-    <servlet>
+<!--     <servlet>
         <servlet-name>mvc-dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
@@ -14,7 +14,23 @@
     <servlet-mapping>
         <servlet-name>mvc-dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping> -->
+
+	<servlet>
+		<servlet-name>HelloWorldServlet</servlet-name>
+		<servlet-class>com.lemonaidapp.HelloWorldServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>QuoteServlet</servlet-name>
+		<servlet-class>com.lemonaidapp.QuoteServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>QuoteServlet</servlet-name>
+		<url-pattern>/Quote</url-pattern>
+	</servlet-mapping>
+
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
