@@ -31,6 +31,15 @@
 		<url-pattern>/Quote</url-pattern>
 	</servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>PlaceholderServlet</servlet-name>
+        <url-pattern>com.lemonaidapp.PlaceholderServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PlaceholderServlet</servlet-name>
+        <url-pattern>Placeholder</url-pattern>
+    </servlet-mapping>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
