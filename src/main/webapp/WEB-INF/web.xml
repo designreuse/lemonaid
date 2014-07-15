@@ -31,10 +31,10 @@
 		<url-pattern>/Quote</url-pattern>
 	</servlet-mapping>
 
-    <servlet-mapping>
+    <servlet>
         <servlet-name>PlaceholderServlet</servlet-name>
         <servlet-class>com.lemonaidapp.PlaceholderServlet</servlet-class>
-    </servlet-mapping>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>PlaceholderServlet</servlet-name>
