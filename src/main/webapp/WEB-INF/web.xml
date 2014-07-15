@@ -33,12 +33,12 @@
 
     <servlet-mapping>
         <servlet-name>PlaceholderServlet</servlet-name>
-        <url-pattern>com.lemonaidapp.PlaceholderServlet</url-pattern>
+        <servlet-class>com.lemonaidapp.PlaceholderServlet</servlet-class>
     </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>PlaceholderServlet</servlet-name>
-        <url-pattern>Placeholder</url-pattern>
+        <url-pattern>/Placeholder</url-pattern>
     </servlet-mapping>
 
     <context-param>
