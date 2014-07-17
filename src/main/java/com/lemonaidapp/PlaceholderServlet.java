@@ -18,7 +18,7 @@ public class PlaceholderServlet extends HttpServlet{
         SumMultiplesOf3And5 number = new SumMultiplesOf3And5();
 
         // put the required output in the request attributes to share with the jsp
-        req.setAttribute("placeholder", number);
+        req.setAttribute("placeholder", number.sum(1000));
         getServletContext().getRequestDispatcher("/Placeholder.jsp").forward(req, resp);
     }
 

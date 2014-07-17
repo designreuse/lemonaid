@@ -6,6 +6,6 @@
   </head>
   <body>
     <h1>Quote</h1>
-    The quote is <c:out value="${requestScope.quote}"/>
+    <p>The quote is <c:out value="${requestScope.quote}"/>
   </body>
 </html>
