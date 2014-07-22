@@ -12,6 +12,8 @@
 				<tr>
 					<td><c:out value="${event.date}"></c:out></td>
 					<td><c:out value="${event.vehicleName}"></c:out></td>
+					<td><c:out value="${event.task}"></c:out></td>
+					<td><c:out value="${event.comments}"></c:out></td>
 				</tr>
 			</c:forEach>
 		</table>

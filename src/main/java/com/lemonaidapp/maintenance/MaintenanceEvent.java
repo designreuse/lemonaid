@@ -6,15 +6,15 @@ public class MaintenanceEvent {
 
     private Date date;
 	private String vehicleName;
-    private String vehicleDescription;
-    private String vehicleNotes;
-    private Integer vehicleMileage;
+    private String task;
+    private String comments;
+    private Integer mileage;
 
 	public void setDate(Date date){
         this.date = date;
     }
 	
-	public Date getDate(Date date){
+	public Date getDate(){
         return this.date;
     }
 
@@ -22,32 +22,32 @@ public class MaintenanceEvent {
         this.vehicleName = name;
     }
     
-    public String getVehicleName(String name){
+    public String getVehicleName(){
         return this.vehicleName;
     }
 
-    public void setVehicleDescription(String vehicleDescription){
-        this.vehicleDescription = vehicleDescription;
+    public void setTask(String task){
+        this.task = task;
     }
 
-    public String getDescription(String description){
-        return this.vehicleDescription;
+    public String getTask(){
+        return this.task;
     }
 
-    public void setVehicleNotes(String vehicleNotes){
-        this.vehicleNotes = vehicleNotes;
+    public void setComments(String comments){
+        this.comments = comments;
     }
 
-    public String getNotes(String notes){
-        return this.vehicleNotes;
+    public String getComments(){
+        return this.comments;
     }
 
-    public void setVehicleMileage(Integer vehicleMileage){
-        this.vehicleMileage = vehicleMileage;
+    public void setMileage(Integer mileage){
+        this.mileage = mileage;
     }
 
-    public Integer getMileage(Integer mileage){
-        return this.vehicleMileage;
+    public Integer getMileage(){
+        return this.mileage;
     }
 
 }

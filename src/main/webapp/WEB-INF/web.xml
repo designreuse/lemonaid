@@ -17,9 +17,14 @@
     </servlet-mapping> -->
 
 	<servlet>
-		<servlet-name>HelloWorldServlet</servlet-name>
-		<servlet-class>com.lemonaidapp.HelloWorldServlet</servlet-class>
+		<servlet-name>MaintenanceListingController</servlet-name>
+		<servlet-class>com.lemonaidapp.maintenance.MaintenanceListingController</servlet-class>
 	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>MaintenanceListingController</servlet-name>
+		<url-pattern>/maintenance/listing</url-pattern>
+	</servlet-mapping>
 	
 	<servlet>
 		<servlet-name>QuoteServlet</servlet-name>
