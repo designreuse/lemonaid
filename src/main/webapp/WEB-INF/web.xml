@@ -23,7 +23,7 @@
 
     <servlet-mapping>
         <servlet-name>PostServlet</servlet-name>
-        <url-pattern>/maintenance/posts</url-pattern>
+        <url-pattern>/maintenance/listing/2</url-pattern>
     </servlet-mapping>
 
 	<servlet>

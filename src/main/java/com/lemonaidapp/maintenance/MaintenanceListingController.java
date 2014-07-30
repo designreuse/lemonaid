@@ -28,7 +28,7 @@ public class MaintenanceListingController extends HttpServlet {
 		Calendar oilChangeCal = Calendar.getInstance();
 		oilChangeCal.set(2014, 4, 15);
 		oilChange.setDate(oilChangeCal.getTime());
-		oilChange.setTask("Change Oil");
+		oilChange.setTask("Changed Oil");
 		oilChange.setComments("4 Quarts Mobil1");
 		oilChange.setVehicleName("Subaru Impreza");
 		events.add(oilChange);
@@ -38,7 +38,7 @@ public class MaintenanceListingController extends HttpServlet {
 		brakeWorkCal.set(2014, 4, 15);
 		brakeWork.setDate(brakeWorkCal.getTime());
 		brakeWork.setTask("Changed Brake Pads");
-		brakeWork.setComments("Life expectancy of pads is 60,000 miles");
+		brakeWork.setComments("Life expectancy: 60,000 miles");
 		brakeWork.setVehicleName("Subaru Impreza");
 		events.add(brakeWork);
 		
