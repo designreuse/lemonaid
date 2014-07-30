@@ -23,7 +23,7 @@
 
     <servlet-mapping>
         <servlet-name>PostServlet</servlet-name>
-        <url-pattern>/maintenance/listing/2</url-pattern>
+        <url-pattern>/maintenance/listing</url-pattern>
     </servlet-mapping>
 
 	<servlet>
@@ -33,12 +33,12 @@
 	
 	<servlet-mapping>
 		<servlet-name>MaintenanceListingController</servlet-name>
-		<url-pattern>/maintenance/listing</url-pattern>
+		<url-pattern>/maintenance/listing2</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
 		<servlet-name>QuoteServlet</servlet-name>
-		<servlet-class>com.lemonaidapp.QuoteServlet</servlet-class>
+		<servlet-class>com.lemonaidapp.misc.QuoteServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
@@ -48,7 +48,7 @@
 
     <servlet>
         <servlet-name>PlaceholderServlet</servlet-name>
-        <servlet-class>com.lemonaidapp.PlaceholderServlet</servlet-class>
+        <servlet-class>com.lemonaidapp.misc.PlaceholderServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
