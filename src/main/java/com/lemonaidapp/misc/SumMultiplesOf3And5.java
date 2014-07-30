@@ -1,4 +1,4 @@
-package com.lemonaidapp;
+package com.lemonaidapp.misc;
 
 /**
  * Created by ddcdanter on 7/15/14.

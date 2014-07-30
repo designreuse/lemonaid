@@ -1,4 +1,4 @@
-package com.lemonaidapp;
+package com.lemonaidapp.misc;
 
 import java.io.IOException;
 
