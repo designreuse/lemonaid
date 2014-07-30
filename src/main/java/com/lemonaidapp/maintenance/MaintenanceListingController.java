@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 public class MaintenanceListingController extends HttpServlet {
 
-	private final Logger log = LoggerFactory.getLogger(MaintenanceListingController.class);
+	//private final Logger log = LoggerFactory.getLogger(MaintenanceListingController.class);
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -37,8 +37,8 @@ public class MaintenanceListingController extends HttpServlet {
 		Calendar brakeWorkCal = Calendar.getInstance();
 		brakeWorkCal.set(2014, 4, 15);
 		brakeWork.setDate(brakeWorkCal.getTime());
-		brakeWork.setTask("Change Oil");
-		brakeWork.setComments("4 Quarts Mobil1");
+		brakeWork.setTask("Changed Brake Pads");
+		brakeWork.setComments("Life expectancy of pads is 60,000 miles");
 		brakeWork.setVehicleName("Subaru Impreza");
 		events.add(brakeWork);
 		

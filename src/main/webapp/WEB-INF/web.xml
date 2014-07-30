@@ -16,6 +16,16 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping> -->
 
+    <servlet>
+        <servlet-name>PostServlet</servlet-name>
+        <servlet-class>com.lemonaidapp.maintenance.PostServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>PostServlet</servlet-name>
+        <url-pattern>/maintenance/posts</url-pattern>
+    </servlet-mapping>
+
 	<servlet>
 		<servlet-name>MaintenanceListingController</servlet-name>
 		<servlet-class>com.lemonaidapp.maintenance.MaintenanceListingController</servlet-class>

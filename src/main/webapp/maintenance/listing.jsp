@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<h1>Maintenance Event Listing</h1>
-		<table>
+		<table border="1" style="width:300px">
 			<c:forEach var="event" items="${events}">
 				<tr>
 					<td><c:out value="${event.date}"></c:out></td>
