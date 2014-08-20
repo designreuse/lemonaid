@@ -3,6 +3,7 @@ package com.lemonaidapp.maintenance;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +27,7 @@ public class MaintenanceEventController extends HttpServlet {
         newEvent.setTask(req.getParameter("task"));
         newEvent.setComments(req.getParameter("comment"));
         newEvent.setVehicleName(req.getParameter("vehicleName"));
+        newEvent.setUuid(UUID.randomUUID());
         
         this.eventRepo.createEvent(newEvent);
         

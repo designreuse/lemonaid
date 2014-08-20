@@ -1,6 +1,7 @@
 package com.lemonaidapp.maintenance;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class MaintenanceEvent {
 
@@ -9,6 +10,7 @@ public class MaintenanceEvent {
     private String task;
     private String comments;
     private Integer mileage;
+    private UUID uuid;
 
 	public void setDate(Date date){
         this.date = date;
@@ -50,4 +52,11 @@ public class MaintenanceEvent {
         return this.mileage;
     }
 
+    public void setUuid(UUID uuid){
+        this.uuid = uuid;
+    }
+
+    public UUID getUuid(){
+        return this.uuid;
+    }
 }
