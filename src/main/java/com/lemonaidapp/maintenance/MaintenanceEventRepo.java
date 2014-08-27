@@ -49,6 +49,15 @@ public class MaintenanceEventRepo {
 	public List<MaintenanceEvent> findAllEvents() {
 		return this.events;
 	}
+
+    public MaintenanceEvent findSingleEvent() {
+
+        Integer mostRecent = events.size()-1;
+        if(mostRecent == -1){
+            return null;
+        }
+        return this.events.get(mostRecent);
+    }
 	
 	public void createEvent(MaintenanceEvent event) {
 		this.events.add(event);

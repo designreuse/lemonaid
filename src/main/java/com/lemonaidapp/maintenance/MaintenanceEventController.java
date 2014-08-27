@@ -36,4 +36,14 @@ public class MaintenanceEventController extends HttpServlet {
 		req.setAttribute("events", events);
         getServletContext().getRequestDispatcher("/maintenance/listing.jsp").forward(req, resp);
 	}
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        MaintenanceEvent event = this.eventRepo.findSingleEvent();
+
+        req.setAttribute("events", event);
+        getServletContext().getRequestDispatcher("/maintenance/event.jsp").forward(req, resp);
+    }
 }
