@@ -17,11 +17,11 @@
 		<table border="1" style="width:700px">
 			<c:forEach var="event" items="${events}">
 				<tr>
-					<td><c:out value="${event.date}"></c:out></td>
-					<td><c:out value="${event.vehicleName}"></c:out></td>
-					<td><c:out value="${event.task}"></c:out></td>
-					<td><c:out value="${event.comments}"></c:out></td>
-                    <td><c:out value="${event.uuid}"></c:out></td>
+					<td><c:out value="${event.date}"/></td>
+					<td><c:out value="${event.vehicleName}"/></td>
+					<td><c:out value="${event.task}"/></td>
+					<td><c:out value="${event.comments}"/></td>
+                    <td><c:out value="${event.uuid}"/></td>
 				</tr>
 			</c:forEach>
 		</table>

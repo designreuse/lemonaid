@@ -51,12 +51,11 @@ public class MaintenanceEventRepo {
 	}
 
     public MaintenanceEvent findSingleEvent() {
-
-        Integer mostRecent = events.size()-1;
-        if(mostRecent == -1){
+        int size = this.events.size();
+        if(size-1 == -1){
             return null;
         }
-        return this.events.get(mostRecent);
+        return this.events.get(size-1);
     }
 	
 	public void createEvent(MaintenanceEvent event) {
