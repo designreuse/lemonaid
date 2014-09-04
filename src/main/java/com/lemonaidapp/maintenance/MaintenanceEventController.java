@@ -3,6 +3,7 @@ package com.lemonaidapp.maintenance;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -27,7 +28,7 @@ public class MaintenanceEventController extends HttpServlet {
         newEvent.setTask(req.getParameter("task"));
         newEvent.setComments(req.getParameter("comment"));
         newEvent.setVehicleName(req.getParameter("vehicleName"));
-        newEvent.setUuid(UUID.randomUUID());
+        newEvent.setId(new Random(System.currentTimeMillis()).nextInt(Integer.MAX_VALUE));;
         
         this.eventRepo.createEvent(newEvent);
         
@@ -41,9 +42,20 @@ public class MaintenanceEventController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        MaintenanceEvent event = this.eventRepo.findSingleEvent();
+        int id = -1;
+        
+        if (req.getParameter("id") != null) {
+        	id = Integer.parseInt(req.getParameter("id"));
+        }
+        
+        if (id == -1) {
+        	// Error! Do something!
+        	resp.sendError(500, "Error loading maintenance event");
+        }
 
-        req.setAttribute("events", event);
+        MaintenanceEvent event = this.eventRepo.findEventById(id);
+        
+        req.setAttribute("event", event);
         getServletContext().getRequestDispatcher("/maintenance/event.jsp").forward(req, resp);
     }
 }

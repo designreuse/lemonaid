@@ -21,7 +21,7 @@
 					<td><c:out value="${event.vehicleName}"/></td>
 					<td><c:out value="${event.task}"/></td>
 					<td><c:out value="${event.comments}"/></td>
-                    <td><c:out value="${event.uuid}"/></td>
+                    <td><c:out value="${event.id}"/></td>
 				</tr>
 			</c:forEach>
 		</table>

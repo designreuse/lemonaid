@@ -3,6 +3,7 @@ package com.lemonaidapp.maintenance;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -10,6 +11,7 @@ import java.util.UUID;
  */
 public class MaintenanceEventRepo {
 
+	private Random RANDOM = new Random(System.currentTimeMillis());
 	private static MaintenanceEventRepo instance;
 	
 	private List<MaintenanceEvent> events;
@@ -24,7 +26,7 @@ public class MaintenanceEventRepo {
         oilChange.setTask("Changed Oil");
         oilChange.setComments("4 Quarts Mobil1");
         oilChange.setVehicleName("Subaru Impreza");
-        oilChange.setUuid(UUID.randomUUID());
+        oilChange.setId(RANDOM.nextInt(Integer.MAX_VALUE));
         events.add(oilChange);
 
         MaintenanceEvent brakeWork = new MaintenanceEvent();
@@ -34,7 +36,7 @@ public class MaintenanceEventRepo {
         brakeWork.setTask("Changed Brake Pads");
         brakeWork.setComments("Life expectancy: 60,000 miles");
         brakeWork.setVehicleName("Subaru Impreza");
-        brakeWork.setUuid(UUID.randomUUID());
+        brakeWork.setId(RANDOM.nextInt(Integer.MAX_VALUE));
         events.add(brakeWork);
 	}
 	
@@ -49,8 +51,17 @@ public class MaintenanceEventRepo {
 	public List<MaintenanceEvent> findAllEvents() {
 		return this.events;
 	}
+	
+	public MaintenanceEvent findEventById(int id) {
+		// TODO implement me
+		return null;
+	}
 
     public MaintenanceEvent findSingleEvent() {
+    	// TODO
+    	// try this using isEmpty to simplify the code
+    	// change to always load first in list
+    	
         int size = this.events.size();
         if(size-1 == -1){
             return null;

@@ -16,11 +16,11 @@
         </table>
         <table border="1" style="width:700px">
                 <tr>
-                    <td><c:out value="${requestScope.events.date}"/></td>
-                    <td><c:out value="${requestScope.events.vehicleName}"/></td>
-                    <td><c:out value="${requestScope.events.task}"/></td>
-                    <td><c:out value="${requestScope.events.comments}"/></td>
-                    <td><c:out value="${requestScope.events.uuid}"/></td>
+                    <td><c:out value="${requestScope.event.date}"/></td>
+                    <td><c:out value="${requestScope.event.vehicleName}"/></td>
+                    <td><c:out value="${requestScope.event.task}"/></td>
+                    <td><c:out value="${requestScope.event.comments}"/></td>
+                    <td><c:out value="${requestScope.event.id}"/></td>
                 </tr>
         </table>
     </body>
