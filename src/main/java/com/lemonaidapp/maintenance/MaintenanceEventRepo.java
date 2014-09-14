@@ -54,19 +54,24 @@ public class MaintenanceEventRepo {
 	
 	public MaintenanceEvent findEventById(int id) {
 		// TODO implement me
-		return null;
+
+        for (MaintenanceEvent event : this.events) {
+            if (event.getId() == id) {
+                return event;
+            }
+        }
+        return null;
 	}
 
     public MaintenanceEvent findSingleEvent() {
     	// TODO
     	// try this using isEmpty to simplify the code
     	// change to always load first in list
-    	
-        int size = this.events.size();
-        if(size-1 == -1){
+
+        if(this.events.isEmpty()){
             return null;
         }
-        return this.events.get(size-1);
+        return this.events.get(0);
     }
 	
 	public void createEvent(MaintenanceEvent event) {

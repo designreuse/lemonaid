@@ -49,12 +49,13 @@ public class MaintenanceEventController extends HttpServlet {
         }
         
         if (id == -1) {
-        	// Error! Do something!
+        	//Error! Do something!
         	resp.sendError(500, "Error loading maintenance event");
         }
 
         MaintenanceEvent event = this.eventRepo.findEventById(id);
-        
+        //MaintenanceEvent event = this.eventRepo.findSingleEvent();
+
         req.setAttribute("event", event);
         getServletContext().getRequestDispatcher("/maintenance/event.jsp").forward(req, resp);
     }
