@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>Maintenance Event</h1>
-        <table style="width:600px; font-family:verdana; background-color:lightyellow;">
+        <table style="width:720px; font-family:verdana; background-color:lightyellow;">
             <td><h4>Date/Time</h4></td>
             <td><h4>Vehicle</h4></td>
             <td><h4>Task</h4></td>
@@ -23,5 +23,6 @@
                     <td><c:out value="${requestScope.event.id}"/></td>
                 </tr>
         </table>
+        <a href="http://localhost:8080/maintenance/listing">back</a>
     </body>
 </html>
