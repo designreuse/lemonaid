@@ -2,7 +2,9 @@ package com.lemonaidapp.maintenance;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -14,11 +16,9 @@ public class MaintenanceEventRepo {
 	private Random RANDOM = new Random(System.currentTimeMillis());
 	private static MaintenanceEventRepo instance;
 	
-	private List<MaintenanceEvent> events;
+	private Map<Integer, MaintenanceEvent> events;
 	
 	private MaintenanceEventRepo() {
-		this.events = new ArrayList<MaintenanceEvent>();
-
         MaintenanceEvent oilChange = new MaintenanceEvent();
         Calendar oilChangeCal = Calendar.getInstance();
         oilChangeCal.set(2014, 4, 15);
@@ -27,7 +27,7 @@ public class MaintenanceEventRepo {
         oilChange.setComments("4 Quarts Mobil1");
         oilChange.setVehicleName("Subaru Impreza");
         oilChange.setId(RANDOM.nextInt(Integer.MAX_VALUE));
-        events.add(oilChange);
+        events.put(oilChange.getId(), oilChange);
 
         MaintenanceEvent brakeWork = new MaintenanceEvent();
         Calendar brakeWorkCal = Calendar.getInstance();
@@ -37,7 +37,7 @@ public class MaintenanceEventRepo {
         brakeWork.setComments("Life expectancy: 60,000 miles");
         brakeWork.setVehicleName("Subaru Impreza");
         brakeWork.setId(RANDOM.nextInt(Integer.MAX_VALUE));
-        events.add(brakeWork);
+        events.put(brakeWork.getId(), brakeWork);
 	}
 	
 	public static MaintenanceEventRepo getInstance() {
@@ -49,18 +49,11 @@ public class MaintenanceEventRepo {
 	}
 	
 	public List<MaintenanceEvent> findAllEvents() {
-		return this.events;
+		return new ArrayList<MaintenanceEvent>(this.events.values());
 	}
 	
 	public MaintenanceEvent findEventById(int id) {
-		// TODO implement me
-
-        for (MaintenanceEvent event : this.events) {
-            if (event.getId() == id) {
-                return event;
-            }
-        }
-        return null;
+		return this.events.get(id);
 	}
 
     public MaintenanceEvent findSingleEvent() {
@@ -71,10 +64,10 @@ public class MaintenanceEventRepo {
         if(this.events.isEmpty()){
             return null;
         }
-        return this.events.get(0);
+        return this.events.values().iterator().next();
     }
 	
 	public void createEvent(MaintenanceEvent event) {
-		this.events.add(event);
+		this.events.put(event.getId(), event);
 	}
 }
