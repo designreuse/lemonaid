@@ -48,6 +48,8 @@ public class MaintenanceEventController extends HttpServlet {
         	id = Integer.parseInt(req.getParameter("id"));
         }
         
+        // TODO support search by vehicle name
+        
         if (id == -1) {
         	//Error! Do something!
         	resp.sendError(500, "Error loading maintenance event");

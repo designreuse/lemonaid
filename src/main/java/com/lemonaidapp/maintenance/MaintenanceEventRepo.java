@@ -55,12 +55,14 @@ public class MaintenanceEventRepo {
 	public MaintenanceEvent findEventById(int id) {
 		return this.events.get(id);
 	}
+	
+	public List<MaintenanceEvent> findEventsForVehicle(String vehicleName) {
+		// TODO: implement findEventsForVehicle
+		return null;
+	}
 
+	// TODO remove this method
     public MaintenanceEvent findSingleEvent() {
-    	// TODO
-    	// try this using isEmpty to simplify the code
-    	// change to always load first in list
-
         if(this.events.isEmpty()){
             return null;
         }
