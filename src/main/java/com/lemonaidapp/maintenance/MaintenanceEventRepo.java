@@ -46,21 +46,38 @@ public class MaintenanceEventRepo {
 		return new ArrayList<MaintenanceEvent>(this.events.values());
 	}
 	
-	public MaintenanceEvent findEventById(int id) {
-		return this.events.get(id);
+	public List<MaintenanceEvent> findEventById(int id) {
+        List<MaintenanceEvent> list = new ArrayList<MaintenanceEvent>(this.events.values());
+        List<MaintenanceEvent> list2 = new ArrayList<MaintenanceEvent>();
+        for (MaintenanceEvent event : list) {
+            if (event.getId() == id){
+                list2.add(event);
+            }
+        }
+        return list2;
 	}
 	
 	public List<MaintenanceEvent> findEventsForVehicle(String vehicleName) {
 		// TODO: implement findEventsForVehicle
-		return null;
+        List<MaintenanceEvent> list = new ArrayList<MaintenanceEvent>(this.events.values());
+        List<MaintenanceEvent> list2 = new ArrayList<MaintenanceEvent>();
+        for (MaintenanceEvent event : list) {
+            if (event.getVehicleName().equals(vehicleName)){
+                list2.add(event);
+            }
+        }
+		return list2;
 	}
 
-	// TODO remove this method
-    public MaintenanceEvent findSingleEvent() {
-        if(this.events.isEmpty()){
-            return null;
+    public List<MaintenanceEvent> findEventsByTask(String task) {
+        List<MaintenanceEvent> list = new ArrayList<MaintenanceEvent>(this.events.values());
+        List<MaintenanceEvent> list2 = new ArrayList<MaintenanceEvent>();
+        for (MaintenanceEvent event : list) {
+            if (event.getTask().equals(task)){
+                list2.add(event);
+            }
         }
-        return this.events.values().iterator().next();
+        return list2;
     }
 	
 	public void createEvent(MaintenanceEvent event) {

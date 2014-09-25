@@ -18,9 +18,9 @@
 			<c:forEach var="event" items="${events}">
 				<tr>
 					<td><c:out value="${event.date}"/></td>
-					<td><c:out value="${event.vehicleName}"/></td>
+                    <td><a href="http://localhost:8080/maintenance/event?vehicleName=${event.vehicleName}"><c:out value="${event.vehicleName}"/></a></td>
 					<td><c:out value="${event.task}"/></td>
-					<td><c:out value="${event.comments}"/></td>
+                    <td><a href="http://localhost:8080/maintenance/event?task=${event.task}"><c:out value="${event.task}"/></a></td>
                     <td><a href="http://localhost:8080/maintenance/event?id=${event.id}"><c:out value="${event.id}"/></a></td>
 				</tr>
 			</c:forEach>

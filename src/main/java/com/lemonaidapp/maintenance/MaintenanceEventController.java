@@ -1,10 +1,7 @@
 package com.lemonaidapp.maintenance;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -42,23 +39,37 @@ public class MaintenanceEventController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
+        List<MaintenanceEvent> events = new ArrayList<MaintenanceEvent>();
         int id = -1;
+        String vehicleName = "";
+        String task = "";
         
         if (req.getParameter("id") != null) {
         	id = Integer.parseInt(req.getParameter("id"));
+            if (id == -1) {
+                resp.sendError(500, "Error loading maintenance event");
+            }
+            events = this.eventRepo.findEventById(id);
         }
         
         // TODO support search by vehicle name
-        
-        if (id == -1) {
-        	//Error! Do something!
-        	resp.sendError(500, "Error loading maintenance event");
+        if (req.getParameter("vehicleName") != null) {
+            vehicleName = req.getParameter("vehicleName");
+            if (vehicleName.isEmpty()) {
+                resp.sendError(500, "Error loading maintenance event");
+            }
+            events = this.eventRepo.findEventsForVehicle(vehicleName);
         }
 
-        MaintenanceEvent event = this.eventRepo.findEventById(id);
-        //MaintenanceEvent event = this.eventRepo.findSingleEvent();
+        if (req.getParameter("task") != null) {
+            task = req.getParameter("task");
+            if (task.isEmpty()) {
+                resp.sendError(500, "Error loading maintenance event");
+            }
+            events = this.eventRepo.findEventsByTask(task);
+        }
 
-        req.setAttribute("event", event);
+        req.setAttribute("event", events);
         getServletContext().getRequestDispatcher("/maintenance/event.jsp").forward(req, resp);
     }
 }

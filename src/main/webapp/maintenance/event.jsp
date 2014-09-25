@@ -15,13 +15,15 @@
             <td><h4>ID</h4></td>
         </table>
         <table border="1" style="width:700px">
+            <c:forEach var="event" items="${event}">
                 <tr>
-                    <td><c:out value="${requestScope.event.date}"/></td>
-                    <td><c:out value="${requestScope.event.vehicleName}"/></td>
-                    <td><c:out value="${requestScope.event.task}"/></td>
-                    <td><c:out value="${requestScope.event.comments}"/></td>
-                    <td><c:out value="${requestScope.event.id}"/></td>
+                    <td><c:out value="${event.date}"/></td>
+                    <td><a href="http://localhost:8080/maintenance/event?vehicleName=${event.vehicleName}"><c:out value="${event.vehicleName}"/></a></td>
+                    <td><c:out value="${event.task}"/></td>
+                    <td><a href="http://localhost:8080/maintenance/event?task=${event.task}"><c:out value="${event.task}"/></a></td>
+                    <td><a href="http://localhost:8080/maintenance/event?id=${event.id}"><c:out value="${event.id}"/></a></td>
                 </tr>
+            </c:forEach>
         </table>
         <a href="http://localhost:8080/maintenance/listing">back</a>
     </body>
