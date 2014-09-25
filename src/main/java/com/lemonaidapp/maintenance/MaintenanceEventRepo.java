@@ -1,12 +1,6 @@
 package com.lemonaidapp.maintenance;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by ddcdanter on 7/30/14.
@@ -16,7 +10,7 @@ public class MaintenanceEventRepo {
 	private Random RANDOM = new Random(System.currentTimeMillis());
 	private static MaintenanceEventRepo instance;
 	
-	private Map<Integer, MaintenanceEvent> events;
+	private Map<Integer, MaintenanceEvent> events = new HashMap<Integer, MaintenanceEvent>();
 	
 	private MaintenanceEventRepo() {
         MaintenanceEvent oilChange = new MaintenanceEvent();
