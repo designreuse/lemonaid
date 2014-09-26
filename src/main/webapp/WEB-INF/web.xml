@@ -17,6 +17,16 @@
     </servlet-mapping> -->
 
     <servlet>
+        <servlet-name>MaintenanceHomeController</servlet-name>
+        <servlet-class>com.lemonaidapp.maintenance.MaintenanceHomeController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MaintenanceHomeController</servlet-name>
+        <url-pattern>/maintenance/home</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>MaintenanceEventController</servlet-name>
         <servlet-class>com.lemonaidapp.maintenance.MaintenanceEventController</servlet-class>
     </servlet>

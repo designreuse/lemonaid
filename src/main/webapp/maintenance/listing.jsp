@@ -27,6 +27,6 @@
 				</tr>
 			</c:forEach>
 		</table>
-        <a href="http://localhost:8080/maintenance/listing">home</a>
+        <a href="http://localhost:8080/maintenance/home">home</a>
 	</body>
 </html>

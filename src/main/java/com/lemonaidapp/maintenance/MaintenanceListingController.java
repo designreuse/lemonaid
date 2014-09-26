@@ -30,7 +30,6 @@ public class MaintenanceListingController extends HttpServlet {
 
         events = this.eventRepo.findAllEvents();
 
-        // TODO support search by vehicle name
         if (req.getParameter("vehicleName") != null) {
             vehicleName = req.getParameter("vehicleName");
             if (vehicleName.isEmpty()) {
@@ -45,6 +44,14 @@ public class MaintenanceListingController extends HttpServlet {
                 resp.sendError(500, "Error loading maintenance event");
             }
             events = this.eventRepo.findEventsByTask(task);
+        }
+
+        if (req.getParameter("mileage") != null) {
+            mileage = Integer.parseInt(req.getParameter("mileage"));
+            if (mileage == -1) {
+                resp.sendError(500, "Error loading maintenance event");
+            }
+            events = this.eventRepo.findEventsByMileage(mileage);
         }
 		
         req.setAttribute("events", events);

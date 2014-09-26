@@ -25,6 +25,6 @@
                     <td><a href="http://localhost:8080/maintenance/event?id=${requestScope.event.id}"><c:out value="${requestScope.event.id}"/></a></td>
                 </tr>
         </table>
-        <a href="http://localhost:8080/maintenance/listing">back</a>
+        <a href="http://localhost:8080/maintenance/listing">listings</a>
     </body>
 </html>
