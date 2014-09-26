@@ -24,6 +24,7 @@ public class MaintenanceEventController extends HttpServlet {
         newEvent.setDate(new Date());
         newEvent.setTask(req.getParameter("task"));
         newEvent.setComments(req.getParameter("comment"));
+        newEvent.setMileage(Integer.MAX_VALUE);
         newEvent.setVehicleName(req.getParameter("vehicleName"));
         newEvent.setId(new Random(System.currentTimeMillis()).nextInt(Integer.MAX_VALUE));;
         
@@ -41,6 +42,7 @@ public class MaintenanceEventController extends HttpServlet {
 
         List<MaintenanceEvent> events = new ArrayList<MaintenanceEvent>();
         int id = -1;
+        int mileage = -1;
         String vehicleName = "";
         String task = "";
         
@@ -67,6 +69,14 @@ public class MaintenanceEventController extends HttpServlet {
                 resp.sendError(500, "Error loading maintenance event");
             }
             events = this.eventRepo.findEventsByTask(task);
+        }
+
+        if (req.getParameter("mileage") != null) {
+            mileage = Integer.parseInt(req.getParameter("mileage"));
+            if (mileage == -1) {
+                resp.sendError(500, "Error loading maintenance event");
+            }
+            events = this.eventRepo.findEventsByMileage(mileage);
         }
 
         req.setAttribute("event", events);

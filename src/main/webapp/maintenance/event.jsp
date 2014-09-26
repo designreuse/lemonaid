@@ -12,15 +12,17 @@
             <td><h4>Vehicle</h4></td>
             <td><h4>Task</h4></td>
             <td><h4>Comments</h4></td>
+            <td><h4>Mileage</h4></td>
             <td><h4>ID</h4></td>
         </table>
-        <table border="1" style="width:700px">
+        <table border="1" style="width:690px">
             <c:forEach var="event" items="${event}">
                 <tr>
                     <td><c:out value="${event.date}"/></td>
                     <td><a href="http://localhost:8080/maintenance/event?vehicleName=${event.vehicleName}"><c:out value="${event.vehicleName}"/></a></td>
-                    <td><c:out value="${event.task}"/></td>
                     <td><a href="http://localhost:8080/maintenance/event?task=${event.task}"><c:out value="${event.task}"/></a></td>
+                    <td><c:out value="${event.comments}"/></td>
+                    <td><a href="http://localhost:8080/maintenance/event?mileage=${event.mileage}"><c:out value="${event.mileage}"/></a></td>
                     <td><a href="http://localhost:8080/maintenance/event?id=${event.id}"><c:out value="${event.id}"/></a></td>
                 </tr>
             </c:forEach>

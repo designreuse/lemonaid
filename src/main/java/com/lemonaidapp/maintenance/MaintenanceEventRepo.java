@@ -19,6 +19,7 @@ public class MaintenanceEventRepo {
         oilChange.setDate(oilChangeCal.getTime());
         oilChange.setTask("Changed Oil");
         oilChange.setComments("4 Quarts Mobil1");
+        oilChange.setMileage(12345);
         oilChange.setVehicleName("Subaru Impreza");
         oilChange.setId(RANDOM.nextInt(Integer.MAX_VALUE));
         events.put(oilChange.getId(), oilChange);
@@ -30,6 +31,7 @@ public class MaintenanceEventRepo {
         brakeWork.setTask("Changed Brake Pads");
         brakeWork.setComments("Life expectancy: 60,000 miles");
         brakeWork.setVehicleName("Subaru Impreza");
+        brakeWork.setMileage(67890);
         brakeWork.setId(RANDOM.nextInt(Integer.MAX_VALUE));
         events.put(brakeWork.getId(), brakeWork);
 	}
@@ -74,6 +76,17 @@ public class MaintenanceEventRepo {
         List<MaintenanceEvent> list2 = new ArrayList<MaintenanceEvent>();
         for (MaintenanceEvent event : list) {
             if (event.getTask().equals(task)){
+                list2.add(event);
+            }
+        }
+        return list2;
+    }
+
+    public List<MaintenanceEvent> findEventsByMileage(int mileage) {
+        List<MaintenanceEvent> list = new ArrayList<MaintenanceEvent>(this.events.values());
+        List<MaintenanceEvent> list2 = new ArrayList<MaintenanceEvent>();
+        for (MaintenanceEvent event : list) {
+            if (event.getMileage() == mileage){
                 list2.add(event);
             }
         }
