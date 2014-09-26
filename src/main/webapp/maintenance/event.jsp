@@ -16,16 +16,14 @@
             <td><h4>ID</h4></td>
         </table>
         <table border="1" style="width:690px">
-            <c:forEach var="event" items="${event}">
                 <tr>
                     <td><c:out value="${event.date}"/></td>
-                    <td><a href="http://localhost:8080/maintenance/event?vehicleName=${event.vehicleName}"><c:out value="${event.vehicleName}"/></a></td>
-                    <td><a href="http://localhost:8080/maintenance/event?task=${event.task}"><c:out value="${event.task}"/></a></td>
+                    <td><a href="http://localhost:8080/maintenance/listing?vehicleName=${requestScope.event.vehicleName}"><c:out value="${requestScope.event.vehicleName}"/></a></td>
+                    <td><a href="http://localhost:8080/maintenance/listing?task=${requestScope.event.task}"><c:out value="${requestScope.event.task}"/></a></td>
                     <td><c:out value="${event.comments}"/></td>
-                    <td><a href="http://localhost:8080/maintenance/event?mileage=${event.mileage}"><c:out value="${event.mileage}"/></a></td>
-                    <td><a href="http://localhost:8080/maintenance/event?id=${event.id}"><c:out value="${event.id}"/></a></td>
+                    <td><a href="http://localhost:8080/maintenance/listing?mileage=${requestScope.event.mileage}"><c:out value="${requestScope.event.mileage}"/></a></td>
+                    <td><a href="http://localhost:8080/maintenance/event?id=${requestScope.event.id}"><c:out value="${requestScope.event.id}"/></a></td>
                 </tr>
-            </c:forEach>
         </table>
         <a href="http://localhost:8080/maintenance/listing">back</a>
     </body>

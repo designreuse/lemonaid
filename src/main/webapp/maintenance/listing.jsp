@@ -19,13 +19,14 @@
 			<c:forEach var="event" items="${events}">
 				<tr>
 					<td><c:out value="${event.date}"/></td>
-                    <td><a href="http://localhost:8080/maintenance/event?vehicleName=${event.vehicleName}"><c:out value="${event.vehicleName}"/></a></td>
-                    <td><a href="http://localhost:8080/maintenance/event?task=${event.task}"><c:out value="${event.task}"/></a></td>
+                    <td><a href="http://localhost:8080/maintenance/listing?vehicleName=${event.vehicleName}"><c:out value="${event.vehicleName}"/></a></td>
+                    <td><a href="http://localhost:8080/maintenance/listing?task=${event.task}"><c:out value="${event.task}"/></a></td>
 					<td><c:out value="${event.comments}"/></td>
-                    <td><a href="http://localhost:8080/maintenance/event?mileage=${event.mileage}"><c:out value="${event.mileage}"/></a></td>
+                    <td><a href="http://localhost:8080/maintenance/listing?mileage=${event.mileage}"><c:out value="${event.mileage}"/></a></td>
                     <td><a href="http://localhost:8080/maintenance/event?id=${event.id}"><c:out value="${event.id}"/></a></td>
 				</tr>
 			</c:forEach>
 		</table>
+        <a href="http://localhost:8080/maintenance/listing">home</a>
 	</body>
 </html>

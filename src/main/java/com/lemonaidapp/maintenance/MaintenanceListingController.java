@@ -1,6 +1,7 @@
 package com.lemonaidapp.maintenance;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,7 +22,30 @@ public class MaintenanceListingController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		List<MaintenanceEvent> events = this.eventRepo.findAllEvents();
+
+		List<MaintenanceEvent> events = new ArrayList<MaintenanceEvent>();
+        int mileage = -1;
+        String vehicleName = "";
+        String task = "";
+
+        events = this.eventRepo.findAllEvents();
+
+        // TODO support search by vehicle name
+        if (req.getParameter("vehicleName") != null) {
+            vehicleName = req.getParameter("vehicleName");
+            if (vehicleName.isEmpty()) {
+                resp.sendError(500, "Error loading maintenance event");
+            }
+            events = this.eventRepo.findEventsForVehicle(vehicleName);
+        }
+
+        if (req.getParameter("task") != null) {
+            task = req.getParameter("task");
+            if (task.isEmpty()) {
+                resp.sendError(500, "Error loading maintenance event");
+            }
+            events = this.eventRepo.findEventsByTask(task);
+        }
 		
         req.setAttribute("events", events);
         getServletContext().getRequestDispatcher("/maintenance/listing.jsp").forward(req, resp);

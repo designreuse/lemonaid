@@ -48,15 +48,8 @@ public class MaintenanceEventRepo {
 		return new ArrayList<MaintenanceEvent>(this.events.values());
 	}
 	
-	public List<MaintenanceEvent> findEventById(int id) {
-        List<MaintenanceEvent> list = new ArrayList<MaintenanceEvent>(this.events.values());
-        List<MaintenanceEvent> list2 = new ArrayList<MaintenanceEvent>();
-        for (MaintenanceEvent event : list) {
-            if (event.getId() == id){
-                list2.add(event);
-            }
-        }
-        return list2;
+	public MaintenanceEvent findEventById(int id) {
+        return this.events.get(id);
 	}
 	
 	public List<MaintenanceEvent> findEventsForVehicle(String vehicleName) {

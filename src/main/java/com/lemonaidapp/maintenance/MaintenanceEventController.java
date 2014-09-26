@@ -1,5 +1,7 @@
 package com.lemonaidapp.maintenance;
 
+import sun.applet.Main;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -40,46 +42,19 @@ public class MaintenanceEventController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        List<MaintenanceEvent> events = new ArrayList<MaintenanceEvent>();
+        MaintenanceEvent event = new MaintenanceEvent();
         int id = -1;
-        int mileage = -1;
-        String vehicleName = "";
-        String task = "";
+
         
         if (req.getParameter("id") != null) {
         	id = Integer.parseInt(req.getParameter("id"));
             if (id == -1) {
                 resp.sendError(500, "Error loading maintenance event");
             }
-            events = this.eventRepo.findEventById(id);
-        }
-        
-        // TODO support search by vehicle name
-        if (req.getParameter("vehicleName") != null) {
-            vehicleName = req.getParameter("vehicleName");
-            if (vehicleName.isEmpty()) {
-                resp.sendError(500, "Error loading maintenance event");
-            }
-            events = this.eventRepo.findEventsForVehicle(vehicleName);
+            event = this.eventRepo.findEventById(id);
         }
 
-        if (req.getParameter("task") != null) {
-            task = req.getParameter("task");
-            if (task.isEmpty()) {
-                resp.sendError(500, "Error loading maintenance event");
-            }
-            events = this.eventRepo.findEventsByTask(task);
-        }
-
-        if (req.getParameter("mileage") != null) {
-            mileage = Integer.parseInt(req.getParameter("mileage"));
-            if (mileage == -1) {
-                resp.sendError(500, "Error loading maintenance event");
-            }
-            events = this.eventRepo.findEventsByMileage(mileage);
-        }
-
-        req.setAttribute("event", events);
+        req.setAttribute("event", event);
         getServletContext().getRequestDispatcher("/maintenance/event.jsp").forward(req, resp);
     }
 }
