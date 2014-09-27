@@ -89,4 +89,8 @@ public class MaintenanceEventRepo {
 	public void createEvent(MaintenanceEvent event) {
 		this.events.put(event.getId(), event);
 	}
+
+    public void deleteEvent(MaintenanceEvent event) {
+        this.events.remove(event.getId());
+    }
 }

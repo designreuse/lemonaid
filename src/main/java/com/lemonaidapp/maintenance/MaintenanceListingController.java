@@ -23,7 +23,7 @@ public class MaintenanceListingController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		List<MaintenanceEvent> events = new ArrayList<MaintenanceEvent>();
+		List<MaintenanceEvent> events;
         int mileage = -1;
         String vehicleName = "";
         String task = "";

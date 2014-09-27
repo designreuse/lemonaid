@@ -44,16 +44,15 @@ public class MaintenanceEventController extends HttpServlet {
 
         MaintenanceEvent event = new MaintenanceEvent();
         int id = -1;
-
         
         if (req.getParameter("id") != null) {
         	id = Integer.parseInt(req.getParameter("id"));
             if (id == -1) {
                 resp.sendError(500, "Error loading maintenance event");
             }
-            event = this.eventRepo.findEventById(id);
         }
 
+        event = this.eventRepo.findEventById(id);
         req.setAttribute("event", event);
         getServletContext().getRequestDispatcher("/maintenance/event.jsp").forward(req, resp);
     }
