@@ -8,7 +8,16 @@ import java.util.*;
 public class MaintenanceEventRepo {
 
 	private Random RANDOM = new Random(System.currentTimeMillis());
+
 	private static MaintenanceEventRepo instance;
+
+    public static MaintenanceEventRepo getInstance() {
+        if (instance == null) {
+            instance = new MaintenanceEventRepo();
+        }
+
+        return instance;
+    }
 	
 	private Map<Integer, MaintenanceEvent> events = new HashMap<Integer, MaintenanceEvent>();
 	
@@ -35,14 +44,14 @@ public class MaintenanceEventRepo {
         brakeWork.setId(RANDOM.nextInt(Integer.MAX_VALUE));
         events.put(brakeWork.getId(), brakeWork);
 	}
-	
-	public static MaintenanceEventRepo getInstance() {
-		if (instance == null) {
-			instance = new MaintenanceEventRepo();
-		}
-		
-		return instance;
-	}
+
+    public void createEvent(MaintenanceEvent event) {
+        this.events.put(event.getId(), event);
+    }
+
+    public void deleteEvent(MaintenanceEvent event) {
+        this.events.remove(event.getId());
+    }
 	
 	public List<MaintenanceEvent> findAllEvents() {
 		return new ArrayList<MaintenanceEvent>(this.events.values());
@@ -84,13 +93,5 @@ public class MaintenanceEventRepo {
             }
         }
         return list2;
-    }
-	
-	public void createEvent(MaintenanceEvent event) {
-		this.events.put(event.getId(), event);
-	}
-
-    public void deleteEvent(MaintenanceEvent event) {
-        this.events.remove(event.getId());
     }
 }

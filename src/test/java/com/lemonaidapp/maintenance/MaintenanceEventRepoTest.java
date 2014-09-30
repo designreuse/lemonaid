@@ -6,6 +6,8 @@ import com.lemonaidapp.maintenance.MaintenanceEvent;
 import com.lemonaidapp.maintenance.MaintenanceEventRepo;
 import org.junit.Test;
 import org.junit.Assert.*;
+import sun.jvm.hotspot.utilities.Assert;
+
 import java.util.ArrayList;
 
 // TODO Implement tests

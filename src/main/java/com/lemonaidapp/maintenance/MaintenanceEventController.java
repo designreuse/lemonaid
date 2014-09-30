@@ -1,7 +1,5 @@
 package com.lemonaidapp.maintenance;
 
-import sun.applet.Main;
-
 import java.io.IOException;
 import java.util.*;
 
@@ -42,7 +40,7 @@ public class MaintenanceEventController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        MaintenanceEvent event = new MaintenanceEvent();
+        MaintenanceEvent event;
         int id = -1;
         
         if (req.getParameter("id") != null) {
