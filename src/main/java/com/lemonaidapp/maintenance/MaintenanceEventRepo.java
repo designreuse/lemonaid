@@ -64,34 +64,41 @@ public class MaintenanceEventRepo {
 	public List<MaintenanceEvent> findEventsForVehicle(String vehicleName) {
 		// TODO: implement findEventsForVehicle
         List<MaintenanceEvent> list = new ArrayList<MaintenanceEvent>(this.events.values());
-        List<MaintenanceEvent> list2 = new ArrayList<MaintenanceEvent>();
-        for (MaintenanceEvent event : list) {
-            if (event.getVehicleName().equals(vehicleName)){
-                list2.add(event);
+        int size = list.size();
+        for (int i=0; i<size;i++) {
+            MaintenanceEvent currentEvent = list.get(i);
+            if (!currentEvent.getVehicleName().equals(vehicleName)){
+                list.remove(i);
+                size = list.size();
             }
         }
-		return list2;
+		return list;
 	}
 
     public List<MaintenanceEvent> findEventsByTask(String task) {
         List<MaintenanceEvent> list = new ArrayList<MaintenanceEvent>(this.events.values());
-        List<MaintenanceEvent> list2 = new ArrayList<MaintenanceEvent>();
-        for (MaintenanceEvent event : list) {
-            if (event.getTask().equals(task)){
-                list2.add(event);
+        int size = list.size();
+        for (int i=0; i<size;i++) {
+            MaintenanceEvent currentEvent = list.get(i);
+            if (!currentEvent.getTask().equals(task)){
+                list.remove(i);
+                size = list.size();
             }
         }
-        return list2;
+        return list;
     }
+
 
     public List<MaintenanceEvent> findEventsByMileage(int mileage) {
         List<MaintenanceEvent> list = new ArrayList<MaintenanceEvent>(this.events.values());
-        List<MaintenanceEvent> list2 = new ArrayList<MaintenanceEvent>();
-        for (MaintenanceEvent event : list) {
-            if (event.getMileage() == mileage){
-                list2.add(event);
+        int size = list.size();
+        for (int i=0; i<size;i++) {
+            MaintenanceEvent currentEvent = list.get(i);
+            if (currentEvent.getMileage() != mileage){
+                list.remove(i);
+                size = list.size();
             }
         }
-        return list2;
+        return list;
     }
 }
