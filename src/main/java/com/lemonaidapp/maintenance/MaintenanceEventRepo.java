@@ -7,21 +7,11 @@ import java.util.*;
  */
 public class MaintenanceEventRepo {
 
-	private Random RANDOM = new Random(System.currentTimeMillis());
 
-	private static MaintenanceEventRepo instance;
+    private Map<Integer, MaintenanceEvent> events = new HashMap<Integer, MaintenanceEvent>();
 
-    public static MaintenanceEventRepo getInstance() {
-        if (instance == null) {
-            instance = new MaintenanceEventRepo();
-        }
-
-        return instance;
-    }
-	
-	private Map<Integer, MaintenanceEvent> events = new HashMap<Integer, MaintenanceEvent>();
-	
-	private MaintenanceEventRepo() {
+    private MaintenanceEventRepo() {
+        Random RANDOM = new Random(System.currentTimeMillis());
         MaintenanceEvent oilChange = new MaintenanceEvent();
         Calendar oilChangeCal = Calendar.getInstance();
         oilChangeCal.set(2014, 4, 15);
@@ -43,7 +33,17 @@ public class MaintenanceEventRepo {
         brakeWork.setMileage(67890);
         brakeWork.setId(RANDOM.nextInt(Integer.MAX_VALUE));
         events.put(brakeWork.getId(), brakeWork);
-	}
+    }
+
+    private static MaintenanceEventRepo instance;
+
+    public static MaintenanceEventRepo getInstance() {
+        if (instance == null) {
+            instance = new MaintenanceEventRepo();
+        }
+
+        return instance;
+    }
 
     public void createEvent(MaintenanceEvent event) {
         this.events.put(event.getId(), event);
@@ -56,20 +56,14 @@ public class MaintenanceEventRepo {
 	public List<MaintenanceEvent> findAllEvents() {
 		return new ArrayList<MaintenanceEvent>(this.events.values());
 	}
-	
-	public MaintenanceEvent findEventById(int id) {
-        return this.events.get(id);
-	}
-	
+
 	public List<MaintenanceEvent> findEventsForVehicle(String vehicleName) {
 		// TODO: implement findEventsForVehicle
         List<MaintenanceEvent> list = new ArrayList<MaintenanceEvent>(this.events.values());
-        int size = list.size();
-        for (int i=0; i<size;i++) {
-            MaintenanceEvent currentEvent = list.get(i);
-            if (!currentEvent.getVehicleName().equals(vehicleName)){
-                list.remove(i);
-                size = list.size();
+        for (Iterator <MaintenanceEvent> iterator = list.iterator(); iterator.hasNext();) {
+            MaintenanceEvent maintenanceEvent = iterator.next();
+            if (!maintenanceEvent.getVehicleName().equals(vehicleName)){
+                iterator.remove();
             }
         }
 		return list;
@@ -77,28 +71,27 @@ public class MaintenanceEventRepo {
 
     public List<MaintenanceEvent> findEventsByTask(String task) {
         List<MaintenanceEvent> list = new ArrayList<MaintenanceEvent>(this.events.values());
-        int size = list.size();
-        for (int i=0; i<size;i++) {
-            MaintenanceEvent currentEvent = list.get(i);
-            if (!currentEvent.getTask().equals(task)){
-                list.remove(i);
-                size = list.size();
+        for (Iterator <MaintenanceEvent> iterator = list.iterator(); iterator.hasNext();) {
+            MaintenanceEvent maintenanceEvent = iterator.next();
+            if (!maintenanceEvent.getTask().equals(task)){
+                iterator.remove();
             }
         }
         return list;
     }
 
-
     public List<MaintenanceEvent> findEventsByMileage(int mileage) {
         List<MaintenanceEvent> list = new ArrayList<MaintenanceEvent>(this.events.values());
-        int size = list.size();
-        for (int i=0; i<size;i++) {
-            MaintenanceEvent currentEvent = list.get(i);
-            if (currentEvent.getMileage() != mileage){
-                list.remove(i);
-                size = list.size();
+        for (Iterator<MaintenanceEvent> iterator = list.iterator(); iterator.hasNext(); ) {
+            MaintenanceEvent maintenanceEvent = iterator.next();
+            if (!maintenanceEvent.getMileage().equals(mileage)) {
+                iterator.remove();
             }
         }
         return list;
+    }
+
+    public MaintenanceEvent findEventById(int id) {
+        return this.events.get(id);
     }
 }
