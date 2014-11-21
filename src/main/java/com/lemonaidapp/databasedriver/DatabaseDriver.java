@@ -1,4 +1,4 @@
-package com.lemonaidapp.dbDriver;
+package com.lemonaidapp.databasedriver;
 
 import java.sql.*;
 import java.util.Properties;
@@ -8,15 +8,15 @@ import java.util.logging.Logger;
 /**
  * Created by ddcdanter on 11/18/14.
  */
-public class dbDriver {
+public class DatabaseDriver {
 
     public static void main(String[] args) throws SQLException {
-        String URL = "jdbc:mysql://localhost:3306/lemonaid";
+        String url = "jdbc:mysql://localhost:3306/lemonaid";
         //String username = "username";
         //String password = "password";
 
         try {
-            Connection con = DriverManager.getConnection(URL);
+            Connection con = DriverManager.getConnection(url);
 
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM MaintenanceEventRepo");
