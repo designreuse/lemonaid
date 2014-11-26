@@ -10,16 +10,19 @@ import java.util.logging.Logger;
  */
 public class DatabaseDriver {
 
-    public static void main(String[] args) throws SQLException {
+    public void viewTable(Connection con) throws SQLException {
         String url = "jdbc:mysql://localhost:3306/lemonaid";
-        //String username = "username";
-        //String password = "password";
+        String username = "root";
+        String password = "";
+
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "SELECT * FROM MaintenanceEventRepo";
 
         try {
-            Connection con = DriverManager.getConnection(url);
-
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM MaintenanceEventRepo");
+            con = DriverManager.getConnection(url,username,password);
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(query);
 
             while (rs.next()) {
                 String vehicleName = rs.getString("VehicleName");
@@ -36,13 +39,17 @@ public class DatabaseDriver {
                         + id + "\n"
                         + date + "\n");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } //finally {
-            //try {
-                //if (){}
-            //} catch (SQLException e){
-                //e.printStackTrace();
-            //}
+        } catch (SQLException e) { e.printStackTrace(); }
+        finally {
+            if (con != null) {
+                con.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
         }
+    }
 }
