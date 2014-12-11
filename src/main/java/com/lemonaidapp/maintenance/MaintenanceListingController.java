@@ -1,6 +1,7 @@
 package com.lemonaidapp.maintenance;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,22 +13,32 @@ public class MaintenanceListingController extends HttpServlet {
 
 	//private final Logger log = LoggerFactory.getLogger(MaintenanceListingController.class);
 
-	private MaintenanceEventRepo eventRepo;
+	private InMemoryMaintenanceEventRepo eventRepo;
+    private JbdcMaintenanceEventRepo jbdcMaintenanceEventRepo;
 	
 	public MaintenanceListingController() {
-		this.eventRepo = MaintenanceEventRepo.getInstance();
+		this.jbdcMaintenanceEventRepo = JbdcMaintenanceEventRepo.getInstance();
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		List<MaintenanceEvent> events;
+		List<MaintenanceEvent> events = null;
         int mileage = -1;
         String vehicleName = "";
         String task = "";
 
-        events = this.eventRepo.findAllEvents();
+        //events = this.eventRepo.findAllEvents();
+        try {
+            try {
+                events = this.jbdcMaintenanceEventRepo.findAllEvents();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         if (req.getParameter("vehicleName") != null) {
             vehicleName = req.getParameter("vehicleName");

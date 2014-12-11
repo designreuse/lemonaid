@@ -2,23 +2,17 @@ package com.lemonaidapp.maintenance;
 
 import static org.junit.Assert.*;
 
-import com.lemonaidapp.maintenance.MaintenanceEvent;
-import com.lemonaidapp.maintenance.MaintenanceEventRepo;
 import org.junit.Before;
 import org.junit.Test;
-import sun.jvm.hotspot.utilities.Assert;
-
-import java.util.ArrayList;
-import java.util.List;
 
 // TODO Implement tests
-public class MaintenanceEventRepoTest {
+public class InMemoryMaintenanceEventRepoTest {
 
-    private MaintenanceEventRepo eventRepo;
+    private InMemoryMaintenanceEventRepo eventRepo;
 
     @Before
     public void setup() {
-        this.eventRepo = new MaintenanceEventRepo();
+        this.eventRepo = new InMemoryMaintenanceEventRepo();
     }
 
     @Test

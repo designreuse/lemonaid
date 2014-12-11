@@ -1,5 +1,4 @@
-CREATE DATABASE lemonaid;
-
+DROP TABLE IF EXISTS maintenance_events;
 CREATE TABLE maintenance_events
 (
 VehicleName varchar(255),
@@ -12,5 +11,8 @@ Date date
 
 INSERT INTO maintenance_events
 (VehicleName,Task,Mileage,Id,Comments)
-VALUES ("My Subaru","Oil change",21345,019283756,"This is a test");
-VALUES ("My Ford","Tire change",100101,5647382910,"This is a second test");
+VALUES ("My Subaru","Oil change",21345,56789,"This is a test");
+
+INSERT INTO maintenance_events
+(VehicleName,Task,Mileage,Id,Comments)
+VALUES ("My Ford","Tire change",100101,12345,"This is a second test");

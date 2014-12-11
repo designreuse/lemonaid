@@ -1,6 +1,7 @@
 package com.lemonaidapp.maintenance;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 
 import javax.servlet.ServletException;
@@ -10,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MaintenanceEventController extends HttpServlet {
 
-	private MaintenanceEventRepo eventRepo;
+	private InMemoryMaintenanceEventRepo eventRepo;
 	
 	public MaintenanceEventController() {
-		this.eventRepo = MaintenanceEventRepo.getInstance();
+		this.eventRepo = InMemoryMaintenanceEventRepo.getInstance();
 
         Random RANDOM = new Random(System.currentTimeMillis());
         MaintenanceEvent oilChange = new MaintenanceEvent();
@@ -54,8 +55,8 @@ public class MaintenanceEventController extends HttpServlet {
         this.eventRepo.createEvent(newEvent);
         
 		List<MaintenanceEvent> events = this.eventRepo.findAllEvents();
-		
-		req.setAttribute("events", events);
+
+        req.setAttribute("events", events);
         getServletContext().getRequestDispatcher("/maintenance/listing.jsp").forward(req, resp);
 	}
 
