@@ -66,6 +66,13 @@ public class JbdcMaintenanceEventRepo implements MaintenanceEventRepo {
                 me.setDate(rs.getDate("Date"));
                 createEvent(me);
             }
+            try {
+                rs.close();
+                stmt.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return new ArrayList<MaintenanceEvent>(this.events.values());
     }
