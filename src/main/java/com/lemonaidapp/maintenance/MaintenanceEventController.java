@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MaintenanceEventController extends HttpServlet {
 
 	private InMemoryMaintenanceEventRepo eventRepo;
+    private JbdcMaintenanceEventRepo jbdcMaintenanceEventRepo = JbdcMaintenanceEventRepo.getInstance();
 	
 	public MaintenanceEventController() {
 		this.eventRepo = InMemoryMaintenanceEventRepo.getInstance();
@@ -74,7 +75,7 @@ public class MaintenanceEventController extends HttpServlet {
             }
         }
 
-        event = this.eventRepo.findEventById(id);
+        event = this.jbdcMaintenanceEventRepo.findEventById(id);
         req.setAttribute("event", event);
         getServletContext().getRequestDispatcher("/maintenance/event.jsp").forward(req, resp);
     }

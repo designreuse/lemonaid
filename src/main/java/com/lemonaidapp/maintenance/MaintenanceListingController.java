@@ -29,31 +29,27 @@ public class MaintenanceListingController extends HttpServlet {
         String vehicleName = "";
         String task = "";
 
-        //events = this.eventRepo.findAllEvents();
-        try {
             try {
                 events = this.jbdcMaintenanceEventRepo.findAllEvents();
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         if (req.getParameter("vehicleName") != null) {
             vehicleName = req.getParameter("vehicleName");
             if (vehicleName.isEmpty()) {
                 resp.sendError(500, "Error loading maintenance event");
             }
-            events = this.eventRepo.findEventsForVehicle(vehicleName);
+            events = this.jbdcMaintenanceEventRepo.findEventsForVehicle(vehicleName);
         }
 
         if (req.getParameter("task") != null) {
             task = req.getParameter("task");
+            System.out.println(task);
             if (task.isEmpty()) {
                 resp.sendError(500, "Error loading maintenance event");
             }
-            events = this.eventRepo.findEventsByTask(task);
+            events = this.jbdcMaintenanceEventRepo.findEventsByTask(task);
         }
 
         if (req.getParameter("mileage") != null) {
@@ -61,7 +57,7 @@ public class MaintenanceListingController extends HttpServlet {
             if (mileage == -1) {
                 resp.sendError(500, "Error loading maintenance event");
             }
-            events = this.eventRepo.findEventsByMileage(mileage);
+            events = this.jbdcMaintenanceEventRepo.findEventsByMileage(mileage);
         }
 		
         req.setAttribute("events", events);
