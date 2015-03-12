@@ -1,6 +1,10 @@
 package com.lemonaidapp.maintenance;
 
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import java.io.IOException;
+import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -11,11 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MaintenanceEventController extends HttpServlet {
 
-	private InMemoryMaintenanceEventRepo eventRepo;
-    private JbdcMaintenanceEventRepo jbdcMaintenanceEventRepo = JbdcMaintenanceEventRepo.getInstance();
+	private MaintenanceEventRepo eventRepo;
 	
-	public MaintenanceEventController() {
-		this.eventRepo = InMemoryMaintenanceEventRepo.getInstance();
+	public MaintenanceEventController() throws Exception {
+        WebApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+        this.eventRepo = ctx.getBean("jbdcMaintenanceEventRepo", MaintenanceEventRepo.class);
 
         Random RANDOM = new Random(System.currentTimeMillis());
         MaintenanceEvent oilChange = new MaintenanceEvent();
@@ -52,10 +56,16 @@ public class MaintenanceEventController extends HttpServlet {
         newEvent.setMileage(Integer.MAX_VALUE);
         newEvent.setVehicleName(req.getParameter("vehicleName"));
         newEvent.setId(new Random(System.currentTimeMillis()).nextInt(Integer.MAX_VALUE));;
-        
-        this.eventRepo.createEvent(newEvent);
-        
-		List<MaintenanceEvent> events = this.eventRepo.findAllEvents();
+
+        List<MaintenanceEvent> events;
+
+        try {
+            this.eventRepo.createEvent(newEvent);
+            events = this.eventRepo.findAllEvents();
+        } catch (Exception e) {
+            throw new ServletException(e);
+        }
+
 
         req.setAttribute("events", events);
         getServletContext().getRequestDispatcher("/maintenance/listing.jsp").forward(req, resp);
@@ -75,7 +85,12 @@ public class MaintenanceEventController extends HttpServlet {
             }
         }
 
-        event = this.jbdcMaintenanceEventRepo.findEventById(id);
+        try {
+            event = this.eventRepo.findEventById(id);
+        } catch (Exception e) {
+            throw new ServletException(e);
+        }
+
         req.setAttribute("event", event);
         getServletContext().getRequestDispatcher("/maintenance/event.jsp").forward(req, resp);
     }

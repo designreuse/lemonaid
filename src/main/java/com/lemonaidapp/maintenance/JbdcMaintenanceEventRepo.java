@@ -2,6 +2,7 @@ package com.lemonaidapp.maintenance;
 
 import com.lemonaidapp.databasedriver.DatabaseDriver;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
@@ -10,33 +11,30 @@ import java.util.Date;
  * Created by ddcdanter on 12/2/14.
  */
 public class JbdcMaintenanceEventRepo implements MaintenanceEventRepo {
-    private static JbdcMaintenanceEventRepo instance;
-    private Connection connection;
+    private DataSource dataSource;
 
-    public static JbdcMaintenanceEventRepo getInstance() {
-        if (instance == null) {
-            instance = new JbdcMaintenanceEventRepo();
-        }
-        return instance;
+    public JbdcMaintenanceEventRepo(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
-    private JbdcMaintenanceEventRepo() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException cnfe) {
-            cnfe.printStackTrace();
-        }
-
-        String url = "jdbc:mysql://localhost:3306/lemonaid";
-        String username = "root";
-        String password = "";
-
-        try {
-            this.connection = DriverManager.getConnection(url, username, password);
-        } catch(SQLException se) {
-            se.printStackTrace();
-        }
-    }
+//    @Override
+//    public void createEvent(MaintenanceEvent event) {
+//        String query = "INSERT INTO table_name VALUES " +
+//                "(" +
+//                event.getVehicleName() +
+//                event.getTask() +
+//                event.getMileage() +
+//                event.getId() +
+//                event.getComments() +
+//                ")";
+//
+//        try {
+//            Statement stmt = this.dataSource.getConnection().createStatement();
+//            stmt.executeQuery(query);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void createEvent(MaintenanceEvent event) {
@@ -50,7 +48,7 @@ public class JbdcMaintenanceEventRepo implements MaintenanceEventRepo {
                 ")";
 
         try {
-            Statement stmt = this.connection.createStatement();
+            Statement stmt = this.dataSource.getConnection().createStatement();
             stmt.executeQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -62,7 +60,7 @@ public class JbdcMaintenanceEventRepo implements MaintenanceEventRepo {
         String query = "DELETE FROM maintenance_events WHERE Id="+event.getId();
 
         try {
-            Statement stmt = this.connection.createStatement();
+            Statement stmt = this.dataSource.getConnection().createStatement();
             stmt.executeQuery(query);
 
         } catch (SQLException e) {
@@ -77,7 +75,7 @@ public class JbdcMaintenanceEventRepo implements MaintenanceEventRepo {
         List<MaintenanceEvent> events = new ArrayList<MaintenanceEvent>();
 
         try {
-            Statement stmt = this.connection.createStatement();
+            Statement stmt = this.dataSource.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
             if (rs != null) {
@@ -105,7 +103,7 @@ public class JbdcMaintenanceEventRepo implements MaintenanceEventRepo {
         List<MaintenanceEvent> events = new ArrayList<MaintenanceEvent>();
 
         try {
-            Statement stmt = this.connection.createStatement();
+            Statement stmt = this.dataSource.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
             if (rs != null) {
@@ -133,7 +131,7 @@ public class JbdcMaintenanceEventRepo implements MaintenanceEventRepo {
         List<MaintenanceEvent> events = new ArrayList<MaintenanceEvent>();
 
         try {
-            Statement stmt = this.connection.createStatement();
+            Statement stmt = this.dataSource.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
             if (rs != null) {
@@ -161,7 +159,7 @@ public class JbdcMaintenanceEventRepo implements MaintenanceEventRepo {
         List<MaintenanceEvent> events = new ArrayList<MaintenanceEvent>();
 
         try {
-            Statement stmt = this.connection.createStatement();
+            Statement stmt = this.dataSource.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
             if (rs != null) {
@@ -189,7 +187,7 @@ public class JbdcMaintenanceEventRepo implements MaintenanceEventRepo {
         MaintenanceEvent me = new MaintenanceEvent();
 
         try {
-            Statement stmt = this.connection.createStatement();
+            Statement stmt = this.dataSource.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
             if (rs != null) {

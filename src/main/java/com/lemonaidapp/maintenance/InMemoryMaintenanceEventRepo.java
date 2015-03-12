@@ -12,7 +12,7 @@ public class InMemoryMaintenanceEventRepo implements MaintenanceEventRepo {
 
     private static InMemoryMaintenanceEventRepo instance;
 
-    public static InMemoryMaintenanceEventRepo getInstance() {
+    public InMemoryMaintenanceEventRepo getInstance() {
         if (instance == null) {
             instance = new InMemoryMaintenanceEventRepo();
         }

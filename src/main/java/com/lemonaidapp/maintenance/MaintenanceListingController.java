@@ -1,9 +1,13 @@
 package com.lemonaidapp.maintenance;
 
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,14 +17,18 @@ public class MaintenanceListingController extends HttpServlet {
 
 	//private final Logger log = LoggerFactory.getLogger(MaintenanceListingController.class);
 
-	private InMemoryMaintenanceEventRepo eventRepo;
-    private JbdcMaintenanceEventRepo jbdcMaintenanceEventRepo;
-	
-	public MaintenanceListingController() {
-		this.jbdcMaintenanceEventRepo = JbdcMaintenanceEventRepo.getInstance();
-	}
-	
-	@Override
+	//private InMemoryMaintenanceEventRepo eventRepo;
+    private MaintenanceEventRepo maintenanceEventRepo;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+
+        WebApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(config.getServletContext());
+        this.maintenanceEventRepo = ctx.getBean("jbdcMaintenanceEventRepo", MaintenanceEventRepo.class);
+    }
+
+    @Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
@@ -30,8 +38,10 @@ public class MaintenanceListingController extends HttpServlet {
         String task = "";
 
             try {
-                events = this.jbdcMaintenanceEventRepo.findAllEvents();
+                events = this.maintenanceEventRepo.findAllEvents();
             } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
 
@@ -40,7 +50,7 @@ public class MaintenanceListingController extends HttpServlet {
             if (vehicleName.isEmpty()) {
                 resp.sendError(500, "Error loading maintenance event");
             }
-            events = this.jbdcMaintenanceEventRepo.findEventsForVehicle(vehicleName);
+            events = this.maintenanceEventRepo.findEventsForVehicle(vehicleName);
         }
 
         if (req.getParameter("task") != null) {
@@ -49,7 +59,7 @@ public class MaintenanceListingController extends HttpServlet {
             if (task.isEmpty()) {
                 resp.sendError(500, "Error loading maintenance event");
             }
-            events = this.jbdcMaintenanceEventRepo.findEventsByTask(task);
+            events = this.maintenanceEventRepo.findEventsByTask(task);
         }
 
         if (req.getParameter("mileage") != null) {
@@ -57,7 +67,7 @@ public class MaintenanceListingController extends HttpServlet {
             if (mileage == -1) {
                 resp.sendError(500, "Error loading maintenance event");
             }
-            events = this.jbdcMaintenanceEventRepo.findEventsByMileage(mileage);
+            events = this.maintenanceEventRepo.findEventsByMileage(mileage);
         }
 		
         req.setAttribute("events", events);
